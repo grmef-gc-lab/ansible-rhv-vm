@@ -22,7 +22,7 @@ rhv_vm_ssh_pub_key: []
 rhv_vm_ssh_pwd: []
 rhv_vm_cloud_init_nics:
   - nic_name: "{{ rhv_vm_public_nic_name }}"
-    nic_boot_protocol: dhcp
+    nic_boot_protocol: static
     nic_ip_address: "{{ rhv_vm_public_ip }}"
     nic_netmask: "{{ rhv_vm_public_netmask }}"
     nic_gateway: "{{ rhv_vm_public_gateway }}"
