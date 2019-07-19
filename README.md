@@ -22,9 +22,10 @@ Role Variables
 | `rhv_vm_vcpus` | :x:      | ```1``` | Number of vCPUs to assign to the VM |
 | `rhv_vm_ram` | :x:      | ```2GiB``` | Amount of ram to give to the VM in megabytes |
 | `rhv_vm_public_nic_name` | :x:      | ```eth0``` | The device name of the public interface |
-| `rhv_vm_public_ip` | :heavy_check_mark:      |  | The reachable public IP for the VM |
-| `rhv_vm_public_netmask` | :heavy_check_mark:      |  | The netmask for the public network |
-| `rhv_vm_public_gateway` | :heavy_check_mark:      |  | The gateway IP for the public network |
+| `rhv_vm_public_ip` | :x:      | ```192.168.0.100``` | The reachable public IP for the VM |
+| `rhv_vm_public_netmask` | :x:      | ```255.255.255.0``` | The netmask for the public network |
+| `rhv_vm_public_gateway` | :x:      | ```192.168.0.1``` | The gateway IP for the public network |
+| `rhv_vm_cloud_init_nics` | :x:      | ```look in defaults.yml``` | The dictionary of nic configurations for the VM |
 | `rhv_vm_ssh_username` | :x:      | ```cloud-user``` | Username that will be used for SSH access to the VM |
 | `rhv_vm_ssh_pub_key` | :heavy_check_mark:      |  | SSH Public Key that will be used for SSH access to the VM |
 | `rhv_vm_ssh_pwd` | :heavy_check_mark:      |  | Password that will be used for SSH access to the VM |
