@@ -1,0 +1,49 @@
+---
+# tasks file for playbooks/roles/rhv_vm
+- name: Authenticate to engine to obtain SSO token
+  ovirt_auth:
+    url: "{{ rhv_vm_auth_url | default(omit) }}"
+    username: "{{ rhv_vm_auth_username | default(omit) }}"
+    password: "{{ rhv_vm_auth_password | default(omit) }}"
+    insecure: yes
+
+- name: Create VM {{ rhv_vm_hostname }} from template {{ rhv_vm_template }}
+  ovirt_vm:
+    auth: "{{ ovirt_auth }}"
+    state: running
+    name: "{{ rhv_vm_hostname }}"
+    template: "{{ rhv_vm_template }}"
+    cpu_cores: "{{ rhv_vm_vcpus }}"
+    memory: "{{ rhv_vm_ram }}"
+    cluster: "{{ rhv_vm_cluster }}"
+    cloud_init_persist: yes
+    cloud_init:
+      nic_boot_protocol: static
+      nic_ip_address: "{{ rhv_vm_public_ip }}"
+      nic_netmask: "{{ rhv_vm_public_netmask }}"
+      nic_gateway: "{{ rhv_vm_public_gateway }}"
+      dns_servers: "{{ dns_server_local }}"
+      dns_search: "{{ domain }}"
+      nic_name: "{{ rhv_vm_public_nic_name }}"
+      nic_on_boot: true
+      host_name: "{{ rhv_vm_hostname }}"
+      user_name: "{{ rhv_vm_ssh_username }}"
+      root_password: Redhat1993
+      authorized_ssh_keys: "{{ rhv_vm_ssh_pub_key }}"
+      custom_script: |
+        write_files:
+         - content: |
+             network: {config: disabled}
+           path: /etc/cloud/cloud.cfg.d/10-network-conf.cfg
+           permissions: '0644'
+
+- ovirt_vm_facts:
+    auth: "{{ ovirt_auth }}"
+    pattern: name=rhel*
+- debug:
+    var: ovirt_vms
+
+- name: Always revoke the SSO token
+  ovirt_auth:
+    state: absent
+    ovirt_auth: "{{ ovirt_auth }}"
