@@ -11,6 +11,7 @@ rhv_vm_auth_password: []
 rhv_vm_cluster: Default
 rhv_vm_hostname: []
 rhv_vm_template: []
+rhvm_vm_sockets: 1
 rhv_vm_vcpus: 1
 rhv_vm_ram: 2GiB
 rhv_vm_public_nic_name: eth0

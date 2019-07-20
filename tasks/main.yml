@@ -18,6 +18,7 @@
     state: running
     name: "{{ rhv_vm_hostname }}"
     template: "{{ rhv_vm_template }}"
+    cpu_sockets: "{{ rhvm_vm_sockets }}"
     cpu_cores: "{{ rhv_vm_vcpus }}"
     memory: "{{ rhv_vm_ram }}"
     cluster: "{{ rhv_vm_cluster }}"
