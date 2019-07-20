@@ -38,12 +38,6 @@
            permissions: '0644'
   when: "{{ ovirt_vms | length }} == 0"
 
-- ovirt_vm_facts:
-    auth: "{{ ovirt_auth }}"
-    pattern: name=rhel*
-- debug:
-    var: ovirt_vms
-
 - name: Always revoke the SSO token
   ovirt_auth:
     state: absent
