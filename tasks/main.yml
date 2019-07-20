@@ -7,6 +7,11 @@
     password: "{{ rhv_vm_auth_password | default(omit) }}"
     insecure: yes
 
+- name: Check on status of {{ rhv_vm_hostname }} VM
+  ovirt_vm_facts:
+    auth: "{{ ovirt_auth }}"
+    pattern: name="{{ rhv_vm_hostname }}"
+
 - name: Create VM {{ rhv_vm_hostname }} from template {{ rhv_vm_template }}
   ovirt_vm:
     auth: "{{ ovirt_auth }}"
@@ -31,6 +36,7 @@
              network: {config: disabled}
            path: /etc/cloud/cloud.cfg.d/10-network-conf.cfg
            permissions: '0644'
+  when: "{{ ovirt_vms | length }} == 0"
 
 - ovirt_vm_facts:
     auth: "{{ ovirt_auth }}"
