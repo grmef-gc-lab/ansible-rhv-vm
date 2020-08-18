@@ -8,7 +8,7 @@
     insecure: yes
 
 - name: Check on status of {{ rhv_vm_hostname }} VM
-  ovirt_vm_facts:
+  ovirt_vm_info:
     auth: "{{ ovirt_auth }}"
     pattern: name="{{ rhv_vm_hostname }}"
 
