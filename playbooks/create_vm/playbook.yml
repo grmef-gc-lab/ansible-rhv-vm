@@ -5,4 +5,4 @@
 
   vars_files:
     - ../../vars/rhv_vm.yml
-    # - ../../environments/rhev-m/group_vars/all/vault/vault.yml Build RHV VM
+    # - ../../environments/rhev-m/group_vars/all/vault/vault.yml

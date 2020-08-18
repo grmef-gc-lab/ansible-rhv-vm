@@ -1,10 +1,10 @@
 ---
 domain: meflab.cloud
-dns_server_local: "dns1.gocontainers.cloud"
+dns_server_local: 10.0.0.30
 rhv_vm_auth_url: https://rhev-m.gocontainers.cloud/ovirt-engine/api
-rhv_vm_auth_username: admin@internal
+#rhv_vm_auth_username: admin@internal
 #rhv_vm_auth_password: p@ssw0rd
-rhv_vm_hostname: meftest3.meflab.cloud
+rhv_vm_hostname: meftest3
 
 # Available are "RHEL7.7_MINIMUM" and "RHEL7.7_MAIN"
 rhv_vm_template: RHEL7.7_MINIMUM
