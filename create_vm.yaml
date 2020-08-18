@@ -4,5 +4,5 @@
    - { role: rhv_vm }
 
   vars_files:
-    - ../../vars/rhv_vm.yml
+    - vars/rhv_vm.yml
     # - ../../environments/rhev-m/group_vars/all/vault/vault.yml
