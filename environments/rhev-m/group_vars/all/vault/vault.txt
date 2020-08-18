@@ -1,0 +1,6 @@
+# Create a vault.yml file and add the following
+# Make sure vault.yml is vaulted after it is created.
+
+ssh:
+  user: USERNAME
+  password: "PASSWORD"

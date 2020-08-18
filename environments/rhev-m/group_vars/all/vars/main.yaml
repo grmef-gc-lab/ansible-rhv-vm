@@ -1,0 +1,8 @@
+---
+ansible_user: "{{ ssh.user }}"
+ansible_password: "{{ ssh.password }}"
+ansible_sudo_pass: "{{ ssh.password }}"
+ansible_port: 22
+anible_connection: paramiko
+ansible_user_shell: '/bin/sh'
+# ansible_ssh_executable: /bin/sh
