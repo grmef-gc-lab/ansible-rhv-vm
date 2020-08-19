@@ -1,16 +1,12 @@
 ---
 # These variables are commented because they are been referenced in Ansible Tower/AWX
 # If Not using Ansible Tower/AWX. Please uncomment the variables and specify its value
-#domain: "meflab.cloud"
-
-# DNS server. Default value 10.0.0.30
-dns_server_local: "10.0.0.30"
 
 # The URL for the ovirt-engine API. Default: https://rhev-m.gocontainers.cloud/ovirt-engine/api
 rhv_vm_auth_url: "https://rhev-m.gocontainers.cloud/ovirt-engine/api"
 
 # The username to auth against the API. "admin@internal"
-rhv_vm_auth_username: admin@internal
+#rhv_vm_auth_username: admin@internal
 
 # The password to auth against the API. "p@ssw0rd"
 #rhv_vm_auth_password: ""
@@ -20,36 +16,3 @@ rhv_vm_auth_username: admin@internal
 
 # The FQDN for the VM. e.g. meftest3.meflab.cloud
 #rhv_vm_hostname: "meftest4.meflab.cloud"
-
-# The name of the template to base the VM on. Available are "RHEL7.7_MINIMUM" or "RHEL7.7_MAIN"
-#rhv_vm_template: "RHEL7.7_MINIMUM"
-
-# Number of vCPUs to assign to the VM. e.g. "2"
-#rhv_vm_vcpus: "2"
-
-# Amount of ram to give to the VM in megabytes. e.g. "4GiB"
-#rhv_vm_ram: "4GiB"
-
-# The device name of the public interface. Default value: "eth0"
-#rhv_vm_public_nic_name: ""
-
-# The reachable public IP for the VM. e.g. 10.0.3.12
-#rhv_vm_public_ip: "10.0.3.12"
-
-# The netmask for the public network. Default value: "255.255.0.0"
-rhv_vm_public_netmask: "255.255.0.0"
-
-# The gateway IP for the public network. Default value: "10.0.0.1"
-rhv_vm_public_gateway: "10.0.0.1"
-
-# The dictionary of nic configurations for the VM. Details in defaults.yml
-#rhv_vm_cloud_init_nics: ""
-
-# Username that will be used for SSH access to the VM Default value: "cloud-user"
-rhv_vm_ssh_username: "rhev-user"
-
-# SSH Public Key that will be used for SSH access to the VM. e.g. "ssh-rsa .... root@example.com"
-rhv_vm_ssh_pub_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCjI0E7dTaF/V62fXCsCohNjCmjQN8xMqyq0JuXPtfCyx7D+jbesLNMN+wKW7wspTQLfBcsuKnqKhkUi9E5w0Z8itAh43jGVKgA/Epd4n0mpnkONx6xsmfzEN3fgbdBDn2KpC130ln5Qmi2eWabUZRqO3FtPEbCQRxQ/1i9u1/UyzUCPJKkk7ZsriaWSJVN6wkP/VYU7yKeAhm1QQYibBCpOvgghwxkIT4hr4I9peSbwwtKcY1X3sD/9q0/HKnzk4t0RjcdUl3tS0H/tsKY83s9weyrjL5D77hCwXLdLVboXb23Ov6zFn7Zh7b3bxxFdyoPMERx27ybujej6p7naM4Kpr2dmw+HQEhmvowgtheaUCgE0SBdcUuZI/UqaDhxIw8CyugIEEHKyBDwE/CjjKsBQRZeMwcAeCyh9LlqxaYOMsvaltLJt7J7KURF4Vbha2dzTg7bvMs7scnwJ2Rk7HFnE/CKKWTWngx/Hj1ybBT7cFw0/rliP4DuU57OhCsNROcBMPyIiyR+s4jABZaRLVGx/vKq+8SexvCgkFfaB5RbaZPd3k0YFXKnWHQmIGMH96qre2ocQqZyMqRAz1YzSOoO2Ac3epEAiINjhjKgYxih39Am8iKVdwZvfsH8ghm9t3fzlkdOXhMhwNTiv2LYABX5bz45PI9ixn/Xgm7olpk5CQ== rhev-user@awx.gocontainers.cloud"
-
-# Password that will be used for SSH access to the VM. e.g. p@ssw0rd
-#rhv_vm_ssh_pwd: ""
