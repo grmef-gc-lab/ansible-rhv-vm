@@ -1,0 +1,30 @@
+---
+# defaults file for playbooks/roles/rhv_vm
+# Global
+domain: gocontainers.cloud
+dns_server_local: 10.0.0.30
+
+#rhv_vm specific
+rhv_vm_auth_url: https://ovirt.example.com/ovirt-engine/api
+rhv_vm_auth_username: admin@internal
+rhv_vm_auth_password: []
+rhv_vm_cluster: Default
+rhv_vm_hostname: []
+rhv_vm_template: []
+rhvm_vm_sockets: 1
+rhv_vm_vcpus: 1
+rhv_vm_ram: 2GiB
+rhv_vm_public_nic_name: eth0
+rhv_vm_public_ip: 10.0.0.100
+rhv_vm_public_netmask: 255.255.0.0
+rhv_vm_public_gateway: 10.0.0.1
+rhv_vm_ssh_username: cloud-user
+rhv_vm_ssh_pub_key: []
+rhv_vm_ssh_pwd: []
+rhv_vm_cloud_init_nics:
+  - nic_name: "{{ rhv_vm_public_nic_name }}"
+    nic_boot_protocol: static
+    nic_ip_address: "{{ rhv_vm_public_ip }}"
+    nic_netmask: "{{ rhv_vm_public_netmask }}"
+    nic_gateway: "{{ rhv_vm_public_gateway }}"
+    nic_on_boot: true

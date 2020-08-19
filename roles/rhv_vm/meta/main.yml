@@ -1,6 +1,6 @@
 galaxy_info:
   role_name: rhv-vm
-  author: Kevin Jones
+  author: Mario Feliz
   description: >
     Create a VM on a Red Hat Virtualization (ovirt)
   company: Red Hat
@@ -10,11 +10,11 @@ galaxy_info:
     - name: EL
       versions:
         - 7
-  galaxy_tags:
-    - cloud
-    - rhv
-    - ovirt
-    - rhel
-    - kvm
+#  galaxy_tags:
+#    - cloud
+#    - rhv
+#    - ovirt
+#    - rhel
+#    - kvm
 
 dependencies: []

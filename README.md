@@ -13,6 +13,7 @@ Role Variables
 
 | Variable                 | Required           | Default                                          | Description                                               |
 | ------------------------ | ------------------ | ------------------------------------------------ | --------------------------------------------------------- |
+| `domain`                 | :heavy_check_mark: | ```gocontainers.com```                           | Default domain                                            |
 | `rhv_vm_auth_url`        | :heavy_check_mark: | ```https://ovirt.example.com/ovirt-engine/api``` | The URL for the ovirt-engine API                          |
 | `rhv_vm_auth_username`   | :x:                | ```admin@internal```                             | The username to auth against the API                      |
 | `rhv_vm_auth_password`   | :heavy_check_mark: |                                                  | The password to auth against the API                      |
