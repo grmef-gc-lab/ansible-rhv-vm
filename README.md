@@ -11,24 +11,24 @@ Requirements
 Role Variables
 --------------
 
-| Variable        | Required | Default  | Description                                                                                                                                                                                                                                     |
-| --------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `rhv_vm_auth_url` | :heavy_check_mark:      | ```https://ovirt.example.com/ovirt-engine/api``` | The URL for the ovirt-engine API |
-| `rhv_vm_auth_username` | :x:      | ```admin@internal``` | The username to auth against the API |
-| `rhv_vm_auth_password` | :heavy_check_mark:      |  | The password to auth against the API |
-| `rhv_vm_cluster` | :x:      |  | The name of the RHV/oVirt cluster |
-| `rhv_vm_hostname` | :heavy_check_mark:      |  | The FQDN for the VM |
-| `rhv_vm_template` | :heavy_check_mark:      |  | The name of the template to base the VM on |
-| `rhv_vm_vcpus` | :x:      | ```1``` | Number of vCPUs to assign to the VM |
-| `rhv_vm_ram` | :x:      | ```2GiB``` | Amount of ram to give to the VM in megabytes |
-| `rhv_vm_public_nic_name` | :x:      | ```eth0``` | The device name of the public interface |
-| `rhv_vm_public_ip` | :x:      | ```192.168.0.100``` | The reachable public IP for the VM |
-| `rhv_vm_public_netmask` | :x:      | ```255.255.255.0``` | The netmask for the public network |
-| `rhv_vm_public_gateway` | :x:      | ```192.168.0.1``` | The gateway IP for the public network |
-| `rhv_vm_cloud_init_nics` | :x:      | ```look in defaults.yml``` | The dictionary of nic configurations for the VM |
-| `rhv_vm_ssh_username` | :x:      | ```cloud-user``` | Username that will be used for SSH access to the VM |
-| `rhv_vm_ssh_pub_key` | :heavy_check_mark:      |  | SSH Public Key that will be used for SSH access to the VM |
-| `rhv_vm_ssh_pwd` | :heavy_check_mark:      |  | Password that will be used for SSH access to the VM |
+| Variable                 | Required           | Default                                          | Description                                               |
+| ------------------------ | ------------------ | ------------------------------------------------ | --------------------------------------------------------- |
+| `rhv_vm_auth_url`        | :heavy_check_mark: | ```https://ovirt.example.com/ovirt-engine/api``` | The URL for the ovirt-engine API                          |
+| `rhv_vm_auth_username`   | :x:                | ```admin@internal```                             | The username to auth against the API                      |
+| `rhv_vm_auth_password`   | :heavy_check_mark: |                                                  | The password to auth against the API                      |
+| `rhv_vm_cluster`         | :x:                |                                                  | The name of the RHV/oVirt cluster                         |
+| `rhv_vm_hostname`        | :heavy_check_mark: |                                                  | The FQDN for the VM                                       |
+| `rhv_vm_template`        | :heavy_check_mark: |                                                  | The name of the template to base the VM on                |
+| `rhv_vm_vcpus`           | :x:                | ```1```                                          | Number of vCPUs to assign to the VM                       |
+| `rhv_vm_ram`             | :x:                | ```2GiB```                                       | Amount of ram to give to the VM in megabytes              |
+| `rhv_vm_public_nic_name` | :x:                | ```eth0```                                       | The device name of the public interface                   |
+| `rhv_vm_public_ip`       | :x:                | ```192.168.0.100```                              | The reachable public IP for the VM                        |
+| `rhv_vm_public_netmask`  | :x:                | ```255.255.255.0```                              | The netmask for the public network                        |
+| `rhv_vm_public_gateway`  | :x:                | ```192.168.0.1```                                | The gateway IP for the public network                     |
+| `rhv_vm_cloud_init_nics` | :x:                | ```look in defaults.yml```                       | The dictionary of nic configurations for the VM           |
+| `rhv_vm_ssh_username`    | :x:                | ```cloud-user```                                 | Username that will be used for SSH access to the VM       |
+| `rhv_vm_ssh_pub_key`     | :heavy_check_mark: |                                                  | SSH Public Key that will be used for SSH access to the VM |
+| `rhv_vm_ssh_pwd`         | :heavy_check_mark: |                                                  | Password that will be used for SSH access to the VM       |
 
 Dependencies
 ------------

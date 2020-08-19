@@ -15,9 +15,9 @@ rhvm_vm_sockets: 1
 rhv_vm_vcpus: 1
 rhv_vm_ram: 2GiB
 rhv_vm_public_nic_name: eth0
-rhv_vm_public_ip: 192.168.0.100
-rhv_vm_public_netmask: 255.255.255.0
-rhv_vm_public_gateway: 192.168.0.1
+rhv_vm_public_ip: 10.0.0.100
+rhv_vm_public_netmask: 255.255.0.0
+rhv_vm_public_gateway: 10.0.0.1
 rhv_vm_ssh_username: cloud-user
 rhv_vm_ssh_pub_key: []
 rhv_vm_ssh_pwd: []
