@@ -29,7 +29,7 @@
       dns_search: "{{ domain }}"
       host_name: "{{ rhv_vm_hostname }}"
       user_name: "{{ rhv_vm_ssh_username }}"
-      root_password: Redhat1993
+      root_password: "{{ rhv_vm_ssh_password }}"
       authorized_ssh_keys: "{{ rhv_vm_ssh_pub_key }}"
       custom_script: |
         write_files:

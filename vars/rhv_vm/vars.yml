@@ -48,8 +48,8 @@ rhv_vm_public_gateway: "10.0.0.1"
 # Username that will be used for SSH access to the VM Default value: "cloud-user"
 rhv_vm_ssh_username: "rhev-user"
 
+# Password that will be used for SSH access to the VM. e.g. p@ssw0rd
+#rhv_vm_ssh_password: ""
+
 # SSH Public Key that will be used for SSH access to the VM. e.g. "ssh-rsa .... root@example.com"
 rhv_vm_ssh_pub_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCjI0E7dTaF/V62fXCsCohNjCmjQN8xMqyq0JuXPtfCyx7D+jbesLNMN+wKW7wspTQLfBcsuKnqKhkUi9E5w0Z8itAh43jGVKgA/Epd4n0mpnkONx6xsmfzEN3fgbdBDn2KpC130ln5Qmi2eWabUZRqO3FtPEbCQRxQ/1i9u1/UyzUCPJKkk7ZsriaWSJVN6wkP/VYU7yKeAhm1QQYibBCpOvgghwxkIT4hr4I9peSbwwtKcY1X3sD/9q0/HKnzk4t0RjcdUl3tS0H/tsKY83s9weyrjL5D77hCwXLdLVboXb23Ov6zFn7Zh7b3bxxFdyoPMERx27ybujej6p7naM4Kpr2dmw+HQEhmvowgtheaUCgE0SBdcUuZI/UqaDhxIw8CyugIEEHKyBDwE/CjjKsBQRZeMwcAeCyh9LlqxaYOMsvaltLJt7J7KURF4Vbha2dzTg7bvMs7scnwJ2Rk7HFnE/CKKWTWngx/Hj1ybBT7cFw0/rliP4DuU57OhCsNROcBMPyIiyR+s4jABZaRLVGx/vKq+8SexvCgkFfaB5RbaZPd3k0YFXKnWHQmIGMH96qre2ocQqZyMqRAz1YzSOoO2Ac3epEAiINjhjKgYxih39Am8iKVdwZvfsH8ghm9t3fzlkdOXhMhwNTiv2LYABX5bz45PI9ixn/Xgm7olpk5CQ== rhev-user@awx.gocontainers.cloud"
-
-# Password that will be used for SSH access to the VM. e.g. p@ssw0rd
-#rhv_vm_ssh_pwd: ""
