@@ -1,18 +1,18 @@
 ---
 # tasks file for playbooks/roles/rhv_vm
-- name: "Authenticate to engine to obtain SSO token"
+- name: Authenticate to engine to obtain SSO token
   ovirt_auth:
     url: "{{ rhv_vm_auth_url | default(omit) }}"
     username: "{{ rhv_vm_auth_username | default(omit) }}"
     password: "{{ rhv_vm_auth_password | default(omit) }}"
     insecure: yes
 
-- name: "Check on status of {{ rhv_vm_hostname }} VM"
-  ovirt_vm_info:
+- name: Check on status of {{ rhv_vm_hostname }} VM
+  ovirt_vm_facts:
     auth: "{{ ovirt_auth }}"
-    pattern: "name=\"{{ rhv_vm_hostname }}\""
+    pattern: name="{{ rhv_vm_hostname }}"
 
-- name: "Create VM {{ rhv_vm_hostname }} from template {{ rhv_vm_template }}"
+- name: Create VM {{ rhv_vm_hostname }} from template {{ rhv_vm_template }}
   ovirt_vm:
     auth: "{{ ovirt_auth }}"
     state: running
@@ -37,9 +37,9 @@
              network: {config: disabled}
            path: /etc/cloud/cloud.cfg.d/10-network-conf.cfg
            permissions: '0644'
-  when: "(ovirt_vms | length) == 0"
+  when: (ovirt_vms | length) == 0
 
-- name: "Always revoke the SSO token"
+- name: Always revoke the SSO token
   ovirt_auth:
     state: absent
     ovirt_auth: "{{ ovirt_auth }}"
