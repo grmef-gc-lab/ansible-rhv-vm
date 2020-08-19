@@ -2,10 +2,10 @@
 # tasks file for playbooks/roles/rhv_vm
 - name: "Authenticate to engine to obtain SSO token"
   ovirt_auth:
+    insecure: true
+    password: "{{ rhv_vm_auth_password | default(omit) }}"
     url: "{{ rhv_vm_auth_url | default(omit) }}"
     username: "{{ rhv_vm_auth_username | default(omit) }}"
-    password: "{{ rhv_vm_auth_password | default(omit) }}"
-    insecure: yes
 
 - name: "Check on status of {{ rhv_vm_hostname }} VM"
   ovirt_vm_info:
@@ -15,31 +15,31 @@
 - name: "Create VM {{ rhv_vm_hostname }} from template {{ rhv_vm_template }}"
   ovirt_vm:
     auth: "{{ ovirt_auth }}"
-    state: running
-    name: "{{ rhv_vm_hostname }}"
-    template: "{{ rhv_vm_template }}"
-    cpu_sockets: "{{ rhvm_vm_sockets }}"
-    cpu_cores: "{{ rhv_vm_vcpus }}"
-    memory: "{{ rhv_vm_ram }}"
-    cluster: "{{ rhv_vm_cluster }}"
-    cloud_init_persist: yes
-    cloud_init_nics: "{{ rhv_vm_cloud_init_nics }}"
     cloud_init:
-      dns_servers: "{{ dns_server_local }}"
-      dns_search: "{{ domain }}"
-      host_name: "{{ rhv_vm_hostname }}"
-      user_name: "{{ rhv_vm_ssh_username }}"
-      root_password: Redhat1993
       authorized_ssh_keys: "{{ rhv_vm_ssh_pub_key }}"
       custom_script: |
-        write_files:
-         - content: |
-             network: {config: disabled}
-           path: /etc/cloud/cloud.cfg.d/10-network-conf.cfg
-           permissions: '0644'
+          write_files:
+           - content: |
+               network: {config: disabled}
+             path: /etc/cloud/cloud.cfg.d/10-network-conf.cfg
+             permissions: '0644'
+      dns_search: "{{ domain }}"
+      dns_servers: "{{ dns_server_local }}"
+      host_name: "{{ rhv_vm_hostname }}"
+      root_password: Redhat1993
+      user_name: "{{ rhv_vm_ssh_username }}"
+    cloud_init_nics: "{{ rhv_vm_cloud_init_nics }}"
+    cloud_init_persist: true
+    cluster: "{{ rhv_vm_cluster }}"
+    cpu_cores: "{{ rhv_vm_vcpus }}"
+    cpu_sockets: "{{ rhvm_vm_sockets }}"
+    memory: "{{ rhv_vm_ram }}"
+    name: "{{ rhv_vm_hostname }}"
+    state: running
+    template: "{{ rhv_vm_template }}"
   when: "(ovirt_vms | length) == 0"
-
-- name: "Always revoke the SSO token"
+-
+  name: "Always revoke the SSO token"
   ovirt_auth:
-    state: absent
     ovirt_auth: "{{ ovirt_auth }}"
+    state: absent
