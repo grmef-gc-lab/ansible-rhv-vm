@@ -1,10 +1,13 @@
 - set_fact:
-    host: "{{ rhv_vm_hostname.split('.')[0] }}"
+    host: "{{ rhv_vm_hostname.split('.')[0] }}" # Get the host name from the FQDN
+
+- set_fact:
+    domain: "{{ '.'.join(rhv_vm_hostname.split('.')[-2:]) }}" # Get the domain from the FQDN
 
 - name: "Remove {{ host }} A record"
   ipa_dnsrecord:
     name: "{{ host }}"
-    zone_name: "{{ '.'.join(rhv_vm_hostname.split('.')[-2:]) }}" # Get the domain from the FQDN
+    zone_name: "{{ domain }}"
     record_type: A
     record_value: "{{ rhv_vm_public_ip }}"
     ipa_host: "{{ ipa_hostname }}"
