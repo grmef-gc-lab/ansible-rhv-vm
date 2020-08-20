@@ -2,6 +2,7 @@
 - hosts: localhost
   roles:
    - { role: rhv_vm_delete }
+   - { role: dns_entry_removal }
 
   vars_files:
     - ../../vars/rhv_vm_delete/vars.yml
