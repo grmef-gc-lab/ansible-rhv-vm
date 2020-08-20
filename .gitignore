@@ -1,3 +1,17 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
 vault.yml
+
+.*.swp
+.*.swo
+*.pyc
+*.pyo
+__pycache__/*
+.pytest_cache/*
+
+# artifacts generated during testing
+junit.xml
+output.yml
+.envrc
+
+.vscode/

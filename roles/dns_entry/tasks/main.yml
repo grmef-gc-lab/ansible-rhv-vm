@@ -1,0 +1,15 @@
+- set_fact:
+    host: "{{ rhv_vm_hostname.split('.')[0] }}"
+
+- name: Create Wildcard for Applications
+  ipa_dnsrecord:
+    name: "{{ host }}"
+    zone_name: "{{ domain }}"
+    record_type: A
+    record_value: "{{ rhv_vm_public_ip }}"
+    ipa_host: "{{ ipa_hostname }}"
+    ipa_user: "{{ ipa_username }}"
+    ipa_pass: "{{ ipa_password }}"
+    validate_certs: no
+    state: present
+
