@@ -7,7 +7,7 @@
     - { role: rhv_vm_create }
     - { role: vm_dns_entry }
     - { role: vm_rhsm_registration }
-    - { role: vm_system_patch }
+#    - { role: vm_system_patch }
 
   vars_files:
     - ../../vars/vms/vars.yml
