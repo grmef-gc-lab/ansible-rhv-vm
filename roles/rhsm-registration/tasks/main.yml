@@ -1,11 +1,14 @@
 ---
+- pause:
+    seconds: 10
+
 - name: "rhsm-registration | Register system to RHSM"
   # redhat_subscription:
   #   state: present
   #   username: "{{ rhsm_user }}"
   #   password: "{{ rhsm_password }}"
   #   auto_attach: true
-  shell: "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null {{ rhv_vm_ssh_username }}@{{ rhv_vm_hostname }} 'sudo {{ item }}'"
+  shell: "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -o ControlPersist=60s {{ rhv_vm_ssh_username }}@{{ rhv_vm_hostname }} 'sudo {{ item }}'"
   #ssh_args = -o ControlMaster=auto -o ControlPersist=60s -o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes
   with_items:
     - "subscription-manager register --username={{ rhsm_user }} --password={{ rhsm_password }}"
