@@ -1,7 +1,7 @@
 - set_fact:
     host: "{{ rhv_vm_hostname.split('.')[0] }}"
 
-- name: "Create {{ host }} A record"
+- name: "Creating {{ host }} 'A' record"
   ipa_dnsrecord:
     name: "{{ host }}"
     zone_name: "{{ domain }}"
@@ -12,4 +12,3 @@
     ipa_pass: "{{ ipa_password }}"
     validate_certs: no
     state: present
-
