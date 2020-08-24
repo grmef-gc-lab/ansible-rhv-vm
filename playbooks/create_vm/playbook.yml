@@ -1,8 +1,12 @@
 ---
-- hosts: localhost
+- name: "Create RHV VM"
+  hosts: localhost
+  connection: local
+  gather_facts: false
   roles:
-   - { role: rhv_vm }
-   - { role: dns_entry }
+    - { role: rhv_vm }
+    - { role: dns_entry }
+    - { role: rhsm-registration }
 
   vars_files:
     - ../../vars/rhv_vm/vars.yml

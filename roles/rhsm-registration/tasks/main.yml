@@ -1,0 +1,18 @@
+---
+- name: "rhsm-registration | Register system to RHSM"
+  # redhat_subscription:
+  #   state: present
+  #   username: "{{ rhsm_user }}"
+  #   password: "{{ rhsm_password }}"
+  #   auto_attach: true
+  shell: "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null {{ rhv_vm_hostname }} {{ item.command }}"
+  with_items:
+    - { command: "subscription-manager register --username={{ rhsm_user }} --password={{ rhsm_password }}" }
+    - { command: "subscription-manager attach" }
+
+# -   shell: "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null {{ rhv_vm_hostname }} {{ item.command }}"
+
+- name: "rhsm-registration | Update system"
+  yum:
+    name: '*'
+    state: latest
