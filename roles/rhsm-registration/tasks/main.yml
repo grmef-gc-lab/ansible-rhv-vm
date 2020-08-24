@@ -5,12 +5,14 @@
   #   username: "{{ rhsm_user }}"
   #   password: "{{ rhsm_password }}"
   #   auto_attach: true
-  shell: "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null {{ rhv_vm_hostname }} {{ item }}"
+  shell: "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -i /home/{{ rhv_vm_ssh_username }}/.ssh/id_rsa {{ rhv_vm_ssh_username }}@{{ rhv_vm_hostname }} 'sudo {{ item }}'"
   with_items:
     - "subscription-manager register --username={{ rhsm_user }} --password={{ rhsm_password }}"
-#    - "subscription-manager attach"
+    - "subscription-manager attach"
+    - "subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-optional-rpms --enable=rhel-7-server-supplementary-rpms"
+    - "yum check-update"
 #
-## -   shell: "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null {{ rhv_vm_hostname }} {{ item.command }}"
+## - shell: "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null {{ rhv_vm_hostname }} {{ item.command }}"
 #
 #- name: "rhsm-registration | Update system"
 #  yum:

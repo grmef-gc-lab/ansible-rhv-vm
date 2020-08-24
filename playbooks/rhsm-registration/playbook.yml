@@ -1,7 +1,7 @@
 ---
 - hosts: "{{ rhv_vm_hostname }}"
   roles:
-   - { role: rhv_vm_delete }
+   - { role: rhsm-registration }
 
   vars_files:
     - ../../vars/rhv_vm_delete/vars.yml
