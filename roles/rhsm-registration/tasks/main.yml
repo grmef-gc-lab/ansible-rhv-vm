@@ -5,14 +5,14 @@
   #   username: "{{ rhsm_user }}"
   #   password: "{{ rhsm_password }}"
   #   auto_attach: true
-  shell: "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null {{ rhv_vm_hostname }} {{ item.command }}"
+  shell: "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null {{ rhv_vm_hostname }} {{ item }}"
   with_items:
-    - { command: "subscription-manager register --username={{ rhsm_user }} --password={{ rhsm_password }}" }
-    - { command: "subscription-manager attach" }
-
-# -   shell: "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null {{ rhv_vm_hostname }} {{ item.command }}"
-
-- name: "rhsm-registration | Update system"
-  yum:
-    name: '*'
-    state: latest
+    - "subscription-manager register --username={{ rhsm_user }} --password={{ rhsm_password }}"
+#    - "subscription-manager attach"
+#
+## -   shell: "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null {{ rhv_vm_hostname }} {{ item.command }}"
+#
+#- name: "rhsm-registration | Update system"
+#  yum:
+#    name: '*'
+#    state: latest
