@@ -37,6 +37,11 @@
              network: {config: disabled}
            path: /etc/cloud/cloud.cfg.d/10-network-conf.cfg
            permissions: '0644'
+        runcmd:
+         - subscription-manager register --username={{ rhsm_user }} --password={{ rhsm_password }}
+         - subscription-manager attach
+         - subscription-manager repos --enable="rhel-7-server-rpms" --enable="rhel-7-server-extras-rpms"
+         - yum update -y
   when: (ovirt_vms | length) == 0
 
 - name: Always revoke the SSO token
