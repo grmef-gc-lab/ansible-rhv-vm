@@ -1,8 +1,0 @@
----
-- hosts: "{{ rhv_vm_hostname }}"
-  roles:
-   - { role: rhsm-registration }
-
-  vars_files:
-    - ../../vars/rhv_vm_delete/vars.yml
-    # - ../../environments/rhev-m/group_vars/all/vault/vault.yml

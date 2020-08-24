@@ -1,10 +1,10 @@
 ---
-# defaults file for playbooks/roles/rhv_vm
+# defaults file for playbooks/roles/rhv_vm_create
 # Global
 domain: gocontainers.cloud
 dns_server_local: 10.0.0.30
 
-#rhv_vm specific
+#rhv_vm_create specific
 rhv_vm_auth_url: https://ovirt.example.com/ovirt-engine/api
 rhv_vm_auth_username: admin@internal
 rhv_vm_auth_password: []

@@ -1,0 +1,7 @@
+---
+- name: "rhsm-registration | Register system to RHSM"
+
+  shell: "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -o ControlPersist=60s {{ rhv_vm_ssh_username }}@{{ rhv_vm_hostname }} 'sudo {{ item }}'"
+  with_items:
+    - "subscription-manager unsubscribe --all"
+    - "subscription-manager unregister"

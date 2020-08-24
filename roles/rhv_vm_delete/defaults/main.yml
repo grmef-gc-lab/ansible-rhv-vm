@@ -1,7 +1,7 @@
 ---
-# defaults file for playbooks/roles/rhv_vm
+# defaults file for playbooks/roles/rhv_vm_create
 
-#rhv_vm specific
+#rhv_vm_create specific
 rhv_vm_auth_url: https://rhev-m.gocontainers.cloud/ovirt-engine/api
 rhv_vm_auth_username: admin@internal
 rhv_vm_auth_password: []

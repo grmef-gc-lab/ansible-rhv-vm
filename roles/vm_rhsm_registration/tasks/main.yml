@@ -3,11 +3,6 @@
     seconds: 10
 
 - name: "rhsm-registration | Register system to RHSM"
-  # redhat_subscription:
-  #   state: present
-  #   username: "{{ rhsm_user }}"
-  #   password: "{{ rhsm_password }}"
-  #   auto_attach: true
   shell: "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -o ControlPersist=60s {{ rhv_vm_ssh_username }}@{{ rhv_vm_hostname }} 'sudo {{ item }}'"
   #ssh_args = -o ControlMaster=auto -o ControlPersist=60s -o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes
   with_items:
@@ -15,12 +10,3 @@
     - "subscription-manager attach"
     - "subscription-manager repos --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-optional-rpms --enable=rhel-7-server-supplementary-rpms"
        # --enable=rhel-7-server-rpms is set by default
-    - "yum check-update"
-#
-## - shell: "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null {{ rhv_vm_hostname }} {{ item.command }}"
-#
-#- name: "rhsm-registration | Update system"
-#  yum:
-#    name: '*'
-#    state: latest
-

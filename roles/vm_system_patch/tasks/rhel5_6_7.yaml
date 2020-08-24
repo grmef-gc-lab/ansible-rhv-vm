@@ -1,0 +1,79 @@
+---
+- name: "RHEL patching | Cleaning all cached files from any enabled repository"
+  shell: "sudo yum clean all"
+  args:
+    warn: no
+  tags:
+    - patch_no_reboot
+
+- name: "RHEL patching | Freeing up space taken by orphaned data from disabled or removed repos"
+  file:
+    state: absent
+    path: '/var/cache/yum'
+  tags:
+    - patch_no_reboot
+
+- debug:
+    var: server_update_yum_exclude_pkgs
+  when: ansible_os_family == "RedHat" and update_default | bool and server_update_yum_exclude_pkgs
+  tags:
+    - patch_no_reboot
+
+- debug:
+    var: server_update_yum_install_pkgs
+  when: ansible_os_family == "RedHat" and update_default | bool and server_update_yum_install_pkgs is defined
+  tags:
+    - patch_no_reboot
+
+- pause:
+    seconds: 5
+  tags:
+    - patch_no_reboot
+
+#Upgrade and reboot Redhat based servers
+- block:
+  - name: "RHEL patching | Upgrade or Install packages"
+    yum:
+      name: "{{server_update_yum_install_pkgs | default('*')}}"
+      state: latest
+      update_cache: yes
+      exclude: "{{server_update_yum_exclude_pkgs | default([])}}"
+    #environment: "{{proxy_env}}"
+    register: stat_yum_upgrade_results
+    until: '"failed" not in stat_yum_upgrade_results'
+    retries: 0
+    delay: 30
+  rescue:
+  - debug:
+      msg: 'YUM Upgrade failed'
+  - meta: flush_handlers
+  - fail:
+      msg: 'YUM Upgrade failed'
+  when: ansible_os_family == "RedHat" and update_default | bool
+  tags:
+    - patch_no_reboot
+
+- name: "RHEL patching | Rebooting {{ inventory_hostname }}"
+  shell: sleep 2 && /sbin/shutdown -r now "System rebootting"
+  async: 1
+  poll: 0
+  ignore_errors: true
+  become: yes
+  when: ansible_os_family == "RedHat" and reboot_default | bool
+  tags:
+    - reboot
+
+# Wait for server to come back online
+- name: "RHEL patching | Waitting for server {{ ansible_ssh_host | default(inventory_hostname) }} to come back online"
+  local_action: wait_for
+    delay=30
+    host="{{ ansible_ssh_host | default(inventory_hostname) }}"
+    port="{{ server_update_ssh_port }}"
+    search_regex=OpenSSH
+    sleep=10
+    state=started
+    timeout=1200
+  become: false
+  when: "server_update_reboot_wait | bool and reboot_default | bool"
+  tags:
+    - reboot

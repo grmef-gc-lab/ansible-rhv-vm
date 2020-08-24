@@ -1,0 +1,19 @@
+---
+debug_enabled_default: false
+update_default: true
+reboot_default: true
+server_update_reboot_wait: true
+server_update_ssh_port: 22
+#
+#For Redhat/CentOS: List of packages to not update (comma separated).
+#Can include wildcard to match multiple packages.
+#server_update_yum_exclude_pkgs: []
+#server_update_yum_exclude_pkgs: "mysql*, bash, openssh*"
+#server_update_yum_exclude_pkgs: "kernel*,dracut*,kexec*,qemu*,libvirt*,perf*,python-perf*,microcode*"
+server_update_yum_exclude_pkgs: []
+#
+#For Redhat/CentOS: List of packages to ONLY update (comma separated).
+#Can include wildcard to match multiple packages.
+#This will not update anything else (besides dependencies). '*' will update all installed packages.
+#server_update_yum_install_pkgs: "kernel-*, iwl*firmware, microcode_ctl, dracut"
+server_update_yum_install_pkgs: '*'

@@ -1,0 +1,24 @@
+---
+-
+  become: true
+  become_method: sudo
+  become_user: "{{ host_user }}"
+  gather_facts: true
+  hosts: "{{ host_group }}"
+  roles:
+    - patch_prod
+
+  vars_prompt:
+    -
+      name: host_group
+      private: false
+      prompt: "Enter Host Group"
+    -
+      name: host_user
+      private: false
+      prompt: "Enter Become username"
+    -
+      name: ansible_sudo_pass
+      private: true
+      prompt: "Sudo password"
+      # test

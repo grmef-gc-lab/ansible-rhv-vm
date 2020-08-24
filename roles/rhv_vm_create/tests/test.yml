@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - rhv_vm
+    - rhv_vm_create
