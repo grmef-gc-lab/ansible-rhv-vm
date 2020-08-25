@@ -5,3 +5,5 @@
   with_items:
     - "subscription-manager unsubscribe --all"
     - "subscription-manager unregister"
+  tags:
+    - unregister

@@ -1,6 +1,8 @@
 ---
 - pause:
     seconds: 5
+  tags:
+    - register
 
 - name: "rhsm-registration | Register system to RHSM"
   shell: "ssh -t -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -o ControlPersist=60s {{ rhv_vm_ssh_username }}@{{ rhv_vm_hostname }} 'sudo {{ item }}'"
@@ -10,18 +12,28 @@
     - "subscription-manager attach"
     - "subscription-manager repos --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-optional-rpms --enable=rhel-7-server-supplementary-rpms"
        # --enable=rhel-7-server-rpms is set by default
+  tags:
+    - register
 
 - name: "rhsm-registration | Updating system"
   shell: "ssh -t -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -o ControlPersist=60s {{ rhv_vm_ssh_username }}@{{ rhv_vm_hostname }} 'sudo {{ item }}'"
   #ssh_args = -o ControlMaster=auto -o ControlPersist=60s -o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes
   with_items:
     - "yum update -y"
+  tags:
+    - register
+    - update
 
 - name: "rhsm-registration | Reboot system"
   shell: "ssh -t -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -o ControlPersist=60s {{ rhv_vm_ssh_username }}@{{ rhv_vm_hostname }} 'sudo {{ item }}'"
   #ssh_args = -o ControlMaster=auto -o ControlPersist=60s -o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes
   with_items:
     - "shutdown --reboot 0 && exit"
+  tags:
+    - register
+    - reboot
 
 - name: "rhsm-registration | Wait for the system to be online"
   shell: "while true; do ssh -t -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -o ControlPersist=60s {{ rhv_vm_ssh_username }}@{{ rhv_vm_hostname }}; [ $? -eq 0 ] && break || sleep 0.5; done"
+  tags:
+    - register
